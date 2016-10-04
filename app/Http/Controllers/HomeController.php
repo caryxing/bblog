@@ -30,12 +30,17 @@ class HomeController extends Controller
             $email = DB::table('users')->where('id', $request->author_id)->first()->email;
             $posts = DB::table('posts')->where('email', $email)->orderBy('create_at', 'desc')->paginate(5);
         }
+        elseif (!empty($request->search_text)) {
+            $posts = DB::table('posts')
+                       ->where('content', 'LIKE', '%'.$request->search_text.'%')
+                       ->orwhere('title', 'LIKE', '%'.$request->search_text.'%')
+                       ->orwhere('author', 'LIKE', '%'.$request->search_text.'%')
+                       ->orderBy('create_at', 'desc')->paginate(5);
+        }
         else {
             $posts = DB::table('posts')->orderBy('create_at', 'desc')->paginate(5);
         }
         return view('home', ['posts' => $posts]);
     }
-    public function hello() {
-        return "hello";
-    }
+
 }
