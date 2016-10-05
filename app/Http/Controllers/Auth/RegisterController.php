@@ -53,11 +53,12 @@ class RegisterController extends Controller
         $messages = [
             'in' => 'Invalid invitation code.',
         ];
+        $invitation_code = env('INVITATION_CODE', '');
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'invitation_code' => 'required|in:c3',
+            'invitation_code' => 'required|in:'.$invitation_code,
         ], $messages);
     }
 
