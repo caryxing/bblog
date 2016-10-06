@@ -11,22 +11,12 @@
 |
 */
 
-Route::get('role',[
-   'middleware' => 'role: CARY',
-   'uses' => 'TestController@insert',
-]);
-
 Route::get('/viewpost/{post_id}', 'ViewpostController@render');
 Route::post('/viewpost/{post_id}', 'ViewpostController@comment');
 Route::get('/deletepost/{post_id}', 'ViewpostController@delete');
 Route::get('/deletecomment/{post_id}/{comment_id}', 'ViewpostController@delcomment');
 Route::get('/newpost', 'NewpostController@newpost');
 Route::post('/newpost', 'NewpostController@putpost');
-
-
-//Route::get('/', function () {
-//    return view('home');
-//});
 
 Route::get('/', function() {
     return redirect()->route('home');  
