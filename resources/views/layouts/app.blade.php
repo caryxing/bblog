@@ -43,7 +43,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}" style="color: #aaa;">
-                    B . B L O G
+                    B R I G H T. B L O G
                 </a>
             </div>
 
